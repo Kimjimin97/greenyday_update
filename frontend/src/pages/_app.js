@@ -1,7 +1,7 @@
 import wrapper from "../store/configureStore";
 import "../../styles/globals.css";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 function App({ Component, pageProps }) {
   useEffect(() => {
@@ -10,7 +10,7 @@ function App({ Component, pageProps }) {
 
   return (
     <div>
-      <Helmet>
+      {/* <Helmet> */}
         <title>GreenyDay</title>
         <meta
           name="description"
@@ -24,7 +24,7 @@ function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:image" content="/logo_grd.png" />
         <link rel="icon" href="/logo_grd.png" />
-      </Helmet>
+      {/* </Helmet> */}
       <Component {...pageProps} />
     </div>
   );
