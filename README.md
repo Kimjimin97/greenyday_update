@@ -1,31 +1,32 @@
 # Greenyday
 ## 설치 파일
 ### front
-```jsx
-npm i @mantine/ds@6.0.2
-npm i @mantine/core@6.0.2
-npm i @mantine/carousel@6.0.2
-npm i antd@5.3.1
-npm i autoprefixer@10.4.14
-npm i axios@1.3.4
-npm i flowbite-react@0.4.2
-npm i flowbite@1.6.4
-npm i immer@9.0.19
-npm i next-redux-wrapper@8.1.0
-npm i next@13.2.4
-npm i postcss@8.4.21
-npm i react-dom@18.2.0
-npm i react-helmet@6.1.0
-npm i react-redux@8.0.5
-npm i react@18.2.0
-npm i redux-devtools-extension@2.13.9
-npm i redux-saga@1.2.2
-npm i tw-elements@1.0.0-beta1
-npm i redux@4.2.1
-npm i redux-saga@1.2.3
-npm i redux-devtools-extension@2.13.9
-npm i tailwindcss@3.3.2
-```
+>```bash
+>
+> npm i @mantine/ds@6.0.2
+> npm i @mantine/core@6.0.2
+> npm i @mantine/carousel@6.0.2
+> npm i antd@5.3.1
+> npm i autoprefixer@10.4.14
+> npm i axios@1.3.4
+> npm i flowbite-react@0.4.2
+> npm i flowbite@1.6.4
+> npm i immer@9.0.19
+> npm i next-redux-wrapper@8.1.0
+> npm i next@13.2.4
+> npm i postcss@8.4.21
+> npm i react-dom@18.2.0
+> npm i react-helmet@6.1.0
+> npm i react-redux@8.0.5
+> npm i react@18.2.0
+> npm i redux-devtools-extension@2.13.9
+> npm i redux-saga@1.2.2
+> npm i tw-elements@1.0.0-beta1
+> npm i redux@4.2.1
+> npm i redux-saga@1.2.3
+> npm i redux-devtools-extension@2.13.9
+> npm i tailwindcss@3.3.2
+> ```
 
 ### back
 
