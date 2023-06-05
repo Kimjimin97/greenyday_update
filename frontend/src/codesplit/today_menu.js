@@ -35,11 +35,9 @@ function Home() {
   return (
     <div class="bg-[#ECE4D7] overflow-x-hidden">
       <div>
-        <div class="">
-          <Header class="z-50" />
-        </div>
+      
 
-        <div class="">
+        {/* <div class="">
           <div class="mt-10 ">
             <Carousel
               controlSize={72}
@@ -50,7 +48,7 @@ function Home() {
               {slides}
             </Carousel>
           </div>
-        </div>
+        </div> */}
       </div>
       <div class="flex flex-col place-items-center mt-10 ">
         <div class=" w-[1200px] text-[30px] font-semibold  mb-10  text-center lg:text-left">
