@@ -18,6 +18,9 @@ const MenuTo = ({ menus }) => {
         <img
           class=" display:block object-scale-down hover:scale-105 "
           src={backUrl + imgurl}
+          width="236"
+          height="236"
+          // alt={menus.name}
         ></img>
       </Link>
       <div class="display:block  text-[#FEF5E9] text-[25px] mb-[10px]">

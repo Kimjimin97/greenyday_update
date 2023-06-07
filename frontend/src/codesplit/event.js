@@ -35,7 +35,6 @@ function Home() {
   return (
     <div class="bg-[#ECE4D7] overflow-x-hidden">
       <div>
-      
         <div class="">
           <div class="mt-10 ">
             <Carousel
@@ -49,9 +48,6 @@ function Home() {
           </div>
         </div>
       </div>
-      
-    
-
     </div>
   );
 }
