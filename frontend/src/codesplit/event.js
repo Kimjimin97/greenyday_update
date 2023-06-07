@@ -1,6 +1,3 @@
-import Header from "../components/header";
-import Footer from "../components/footer";
-import MenuTo from "../components/menuto";
 import { Carousel } from "@mantine/carousel";
 import { Image } from "@mantine/core";
 import axios from "axios";
@@ -29,7 +26,7 @@ function Home() {
 
   const slides = images.map((url) => (
     <Carousel.Slide key={url}>
-      <Image src={url} />
+      <Image src={url} width={1200} height={675} priority={true} />
     </Carousel.Slide>
   ));
   return (

@@ -1,4 +1,5 @@
 import { backUrl } from "../config/config";
+import Image from "next/image";
 import Link from "next/link";
 function cutString(str, maxLength) {
   str += " ";
@@ -15,13 +16,13 @@ const MenuTo = ({ menus }) => {
   return (
     <div class="flex flex-col place-items-center  max-w-[260px] h-[400px] rounded-[40px] shadow bg-[#CEC0AC] px-3">
       <Link href={"/menu/" + category}>
-        <img
-          class=" display:block object-scale-down hover:scale-105 "
+        <Image
+          // class=" display:block object-scale-down hover:scale-105 "
           src={backUrl + imgurl}
           width="236"
           height="236"
           // alt={menus.name}
-        ></img>
+        ></Image>
       </Link>
       <div class="display:block  text-[#FEF5E9] text-[25px] mb-[10px]">
         {menus.name}

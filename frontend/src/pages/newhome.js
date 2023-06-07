@@ -1,22 +1,27 @@
-import React, {Suspense, lazy} from "react";
-
+import React, { Suspense, lazy } from "react";
 import Header from "../components/header";
-import Footer from "../components/footer";
-import Event from "../codesplit/event"
 
-const TodayMenu = React.lazy(() => import("../codesplit/today_menu"));
+const Event = lazy(() => import("../codesplit/event"));
+const TodayMenu = lazy(() => import("../codesplit/today_menu"));
+const Footer = lazy(() => import("../components/footer"));
 
 const NewHome = () => {
-    return (
-      <div>
-        <Header />
+  return (
+    <div>
+      <Header />
+
+      <div class="flex justify-center items-center bg-[#ECE4D7] w-full h-[715px] ">
         <Event />
-        <Suspense fallback = {<div>loading..</div>}>
-            <TodayMenu />
-        </Suspense>
-        <Footer />
       </div>
-    );
-  };
-  
-  export default NewHome;
+
+      <Suspense fallback={<div>Loading Today Menu...</div>}>
+        <TodayMenu />
+      </Suspense>
+      <Suspense fallback={<div>Loading Footer...</div>}>
+        <Footer />
+      </Suspense>
+    </div>
+  );
+};
+
+export default NewHome;
