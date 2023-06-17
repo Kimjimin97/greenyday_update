@@ -22,10 +22,10 @@ jobs:
         run: npm install
 
       - name: Build and export
-        run: npm run build && npm run export
+        run: cd frontend && npm run build && npm run export
 
       - name: Deploy to S3
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws s3 sync front/out/ s3://your-bucket-name
+          aws s3 sync frontend/out/ s3://your-bucket-name
