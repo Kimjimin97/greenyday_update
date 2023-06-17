@@ -25,9 +25,9 @@ BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 SECRET_KEY = 'ye_ppfz*x4#6+u)_yja=1g**ogouxqn8d_he1p2ijn=na8$b(#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*",]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -46,11 +46,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
-    'storages',
     # local apps
     'greenyday',
     'accounts',
-    's3',
+    'data',
 ]
 
 MIDDLEWARE = [
@@ -87,20 +86,13 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'greenyday',
-        'USER': 'admin',
-        'PASSWORD': 'qwer1234',
-        'HOST': 'test-greenyday.ckrbknt8mrnk.ap-northeast-2.rds.amazonaws.com',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 
 # Password validation
@@ -141,7 +133,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES' : [
@@ -183,26 +179,3 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIAFILES_LOCATION = 'media'
-STATICFILES_LOCATION = 'static'
-AWS_REGION = 'ap-northeast-2'
-
-AWS_STORAGE_BUCKET_NAME = 'greenyday.co.kr'
-AWS_S3_CUSTOM_DOMAIN = 's3.%s.amazonaws.com/%s' % (AWS_REGION, AWS_STORAGE_BUCKET_NAME)
-
-STATIC_URL = "https://%s/static/" % AWS_S3_CUSTOM_DOMAIN
-MEDIA_URL = "https://%s/media/" % AWS_S3_CUSTOM_DOMAIN
-
-DEFAULT_FILE_STORAGE = 'backend.storages.MediaStorage'
-STATICFILES_STORAGE = 'backend.storages.StaticStorage'

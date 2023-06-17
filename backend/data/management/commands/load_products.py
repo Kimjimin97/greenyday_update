@@ -5,13 +5,13 @@ from django.core.files.base import ContentFile
 from django.core.management import BaseCommand
 from tqdm import tqdm
 
-from greenyday.models import Category, Item, Nutrition, Item_Img, Event_Img
+from greenyday.models import Category, Item, Nutrition, Item_Img, Event_Img, Ingredient
 
 BASE_URL = "https://greenyday.co.kr/dev/api/items/"
 
 
 @dataclass
-class Item:
+class Item_data:
     pk: int
     name: str
     calorie: int
@@ -26,8 +26,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         item_dict_list = requests.get(BASE_URL).json()
-
-        item_list = [Item(**item_dict) for item_dict in item_dict_list]
+        item_list = [Item_data(**item_dict) for item_dict in item_dict_list]
         category_name_set = {item.category['name'] for item in item_list}
 
         category_dict = dict()
@@ -39,7 +38,7 @@ class Command(BaseCommand):
         for item in tqdm(item_list):
             category: Category = category_dict[item.category['name']]
             product, is_created = Item.objects.get_or_create(
-                category=category,
+                category_id=category,
                 name=item.name,
                 calorie=item.calorie,
                 price=item.price,
@@ -47,15 +46,16 @@ class Command(BaseCommand):
             )
 
             if is_created:
-                nutritions, __ = Nutrition.objects.get_or_create(product=product, **item.nutritions)
-                #ingredients, __ = .objects.get_or_create(product=product, **item.ingredients)
+                nutritions, __ = Nutrition.objects.get_or_create(item_id=product, **item.nutritions)
+                ingredients, __ = Ingredient.objects.get_or_create(item_id=product, **item.ingredients)
 
             if product.name == item.name:
                 for photo_list in item.itemimges:
                     filename = photo_list['photo'].rsplit("/", 1)[-1]
                     photo_data = requests.get(photo_list['photo']).content
+
                     photo, __ = Item_Img.objects.get_or_create(
-                        product=product,
+                        item_id=product,
                         name=f'{product.name}_사진',
                     )
 
@@ -64,4 +64,3 @@ class Command(BaseCommand):
                         content=ContentFile(photo_data),
                         save=True,
                     )
-                print(item.itemimges)
