@@ -26,6 +26,6 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws configure set aws_access_key_id AKIARZHZTH5LHWDUONPZ
-          aws configure set aws_secret_access_key iHrWgdb/d723Kv0/OL2e4cXrVS4C4WkmKqUSPO2n
-          aws s3 sync frontend/out/ s3://your-bucket-name
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws s3 sync frontend/out/ s3://itsmybuckets-123
