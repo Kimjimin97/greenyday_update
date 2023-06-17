@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       zIndex: ["hover", "active"],
-      fontFamily: { sans: ["AppleSDGothicNeoL"] },
+      fontFamily: { sans: ["AppleSDGothicNeoR00"] },
     },
 
     plugins: [require("flowbite/plugin"), require("tw-elements/dist/plugin")],

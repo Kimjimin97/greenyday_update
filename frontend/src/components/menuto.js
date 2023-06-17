@@ -18,10 +18,10 @@ const MenuTo = ({ menus }) => {
       <Link href={"/menu/" + category}>
         <Image
           // class=" display:block object-scale-down hover:scale-105 "
-          src={backUrl + imgurl}
+          src={imgurl}
           width="236"
           height="236"
-          // alt={menus.name}
+          alt={menus.name}
         ></Image>
       </Link>
       <div class="display:block  text-[#FEF5E9] text-[25px] mb-[10px]">

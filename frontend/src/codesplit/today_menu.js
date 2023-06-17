@@ -8,54 +8,33 @@ import { backUrl } from "../config/config";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-function Home() {
-  const dispatch = useDispatch();
-  const [images, setimgurl] = useState([]);
-  const [mainPosts, setmenu] = useState([]);
+function Home({ data }) {
+  // console.log("home", data);
+  // const [images, setimgurl] = useState([]);
+  // const [mainPosts, setmenu] = useState([]);
 
-  useEffect(() => {
-    axios.get(backUrl + "/api/main/").then((res) => {
-      const events = res.data.events;
-      const image = [];
+  // useEffect(() => {
+  //   axios.get(backUrl + "/api/main/").then((res) => {
+  //     const events = res.data.events;
+  //     const image = [];
 
-      events.map((url) => {
-        console.log(backUrl + url.image);
-        image.push(backUrl + url.image);
-      });
-      setimgurl(image);
-      setmenu(res.data.items);
-    });
-  }, []);
+  //     events.map((url) => {
+  //       image.push(backUrl + url.image);
+  //     });
+  //     setimgurl(image);
+  //     setmenu(res.data.items);
+  //   });
+  // }, []);
 
-  const slides = images.map((url) => (
-    <Carousel.Slide key={url}>
-      <Image src={url} />
-    </Carousel.Slide>
-  ));
   return (
     <div class="bg-[#ECE4D7] overflow-x-hidden">
-      <div>
-      
-
-        {/* <div class="">
-          <div class="mt-10 ">
-            <Carousel
-              controlSize={72}
-              sx={{ maxWidth: 1200 }}
-              mx="auto"
-              withIndicators={true}
-            >
-              {slides}
-            </Carousel>
-          </div>
-        </div> */}
-      </div>
+      <div></div>
       <div class="flex flex-col place-items-center mt-10 ">
         <div class=" w-[1200px] text-[30px] font-semibold  mb-10  text-center lg:text-left">
           Today's Menu
         </div>
         <div class="grid gap-14 lg:grid-cols-4 lg:grid-rows-1 md:grid-rows-2 md:grid-cols-2 grid-rows-4 grid-cols-1">
-          {mainPosts.map((m, index) => (
+          {data.map((m, index) => (
             <MenuTo menus={m} key={index} />
           ))}
         </div>

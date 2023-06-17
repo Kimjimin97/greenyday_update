@@ -1,4 +1,10 @@
-@font-face {
+/* @font-face {
   font-family: "AppleSDGothicNeoL";
   src: url("./AppleSDGothicNeoR.ttf");
+} */
+
+@font-face {
+  font-family: "AppleSDGothicNeoR00";
+  src: url("./AppleSDGothicNeoR00.woff2") format("woff2"),
+    url("./AppleSDGothicNeoR00.woff") format("woff");
 }

@@ -2,36 +2,36 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import MenuTo from "../components/menuto";
 import { Carousel } from "@mantine/carousel";
-import { Image } from "@mantine/core";
+import Image from "next/image";
 import axios from "axios";
 import { backUrl } from "../config/config";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-function Home() {
+function Home({ data }) {
   const dispatch = useDispatch();
-  const [images, setimgurl] = useState([]);
-  const [mainPosts, setmenu] = useState([]);
+  // const [images, setimgurl] = useState([]);
+  const mainPosts = data.items;
+  const events = data.events;
 
-  useEffect(() => {
-    axios.get(backUrl + "/api/main/").then((res) => {
-      const events = res.data.events;
-      const image = [];
+  const images = [];
 
-      events.map((url) => {
-        console.log(backUrl + url.image);
-        image.push(backUrl + url.image);
-      });
-      setimgurl(image);
-      setmenu(res.data.items);
-    });
-  }, []);
+  events.map((url) => {
+    images.push(url.image);
+  });
 
   const slides = images.map((url) => (
     <Carousel.Slide key={url}>
-      <Image src={url} />
+      <Image src={url} width={1200} height={675} priority={true} />
     </Carousel.Slide>
   ));
+
+  const slide = images.map((url) => (
+    <Carousel.Slide key={url}>
+      <Image src={url} width={375} height={211} priority={true} />
+    </Carousel.Slide>
+  ));
+
   return (
     <div class="bg-[#ECE4D7] overflow-x-hidden">
       <div>
@@ -85,6 +85,29 @@ function Home() {
       <Footer />
     </div>
   );
+}
+// export async function getServerSideProps() {
+//   try {
+//     const response = await axios.get(backUrl + "/api/main/");
+//     const data = response.data;
+//     return { props: { data } };
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return { props: { data: null } };
+//   }
+// }
+
+// export default Home;
+
+export async function getStaticProps() {
+  try {
+    const response = await axios.get(backUrl + "/api/main/");
+    const data = response.data;
+    return { props: { data } };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { props: { data: null } };
+  }
 }
 
 export default Home;

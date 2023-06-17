@@ -97,12 +97,37 @@ function logInAPI(values) {
   return axios.post(backUrl + "/api/accounts/login/", values);
 }
 
+function refreshToken(values) {
+  const refresh = localStorage.getItem("refresh_token");
+  const api = axios.create({
+    baseURL: backUrl,
+    headers: {
+      Authorization: refresh,
+      "Content-Type": "application/json",
+    },
+  });
+  return api.get("/refresh");
+}
+
 function* LogIn(action) {
   try {
     const result = yield call(logInAPI, action.values);
 
     localStorage.setItem("access_token", result.data.access_token);
     localStorage.setItem("refresh_token", result.data.refresh_token);
+
+    // const jwt = require("jsonwebtoken");
+    // const token = result.data.access_token;
+    // const decodedToken = jwt.decode(token, { complete: true });
+    // const expirationTime = new Date(decodedToken.payload.exp * 1000);
+    // const currentTime = new Date();
+
+    // if (expirationTime > currentTime) {
+    //   const data = yield call(refreshToken, data);
+    //   return;
+    // }
+
+    // http only cookie에 저장
 
     if ("is_kakao" in result.data) {
       return Router.push("/home");

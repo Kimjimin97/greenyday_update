@@ -1,15 +1,29 @@
 import { Carousel } from "@mantine/carousel";
-import { Image } from "@mantine/core";
+import { Image } from "next/image";
 import axios from "axios";
 import { backUrl } from "../config/config";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-function Event() {
+function Event({ data }) {
+  console.log("data", data);
   const dispatch = useDispatch();
   const [images, setimgurl] = useState([]);
   const [mainPosts, setmenu] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    axios.get("/api/main/").then((res) => {
+      const events = res.data.events;
+      const image = [];
+
+      events.map((url) => {
+        image.push(url.image);
+      });
+      setimgurl(image);
+      setmenu(res.data.items);
+    });
+  }, []);
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -23,19 +37,6 @@ function Event() {
     return () => {
       window.removeEventListener("resize", checkIfMobile);
     };
-  }, []);
-
-  useEffect(() => {
-    axios.get(backUrl + "/api/main/").then((res) => {
-      const events = res.data.events;
-      const image = [];
-
-      events.map((url) => {
-        image.push(backUrl + url.image);
-      });
-      setimgurl(image);
-      setmenu(res.data.items);
-    });
   }, []);
 
   const slides = images.map((url) => (

@@ -1,4 +1,4 @@
-import { backUrl } from "../config/config";
+import Image from "next/image";
 
 const MenuRight = ({ menu }) => {
   function cutString(str, maxLength) {
@@ -15,7 +15,12 @@ const MenuRight = ({ menu }) => {
       <div class=" h-64 flex lg:flex-row-reverse flex-col items-center ">
         <img class="w-auto hidden lg:block" src="/greenline.png"></img>
         <div class="lg:hidden border-[1px] border-[#245A3A] w-full"></div>
-        <img class="w-auto h-[20rem] " src={backUrl +menu.itemimges[0].photo}></img>
+        <Image
+          class="w-auto h-[20rem] "
+          src={menu.itemimges[0].photo}
+          width={300}
+          height={300}
+        />
         <div>
           <div class="lg:grid lg:justify-items-end flex flex-col items-center ">
             <div class=" mb-2 text-[#245A3A] font-bold text-[28px] ">
