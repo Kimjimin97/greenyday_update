@@ -8,5 +8,5 @@ migrations
 frontend/node_modules
 frontend/out
 frontend/.next
-frontend/package.json
+
 frontend/package-lock.json
