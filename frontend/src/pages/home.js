@@ -54,7 +54,7 @@ function Home({ data }) {
       </div>
       <div class="flex flex-col place-items-center mt-10 ">
         <div class=" w-[1200px] text-[30px] font-semibold  mb-10  text-center lg:text-left">
-          Today's Menu
+          Today's Menuu
         </div>
         <div class="grid gap-14 lg:grid-cols-4 lg:grid-rows-1 md:grid-rows-2 md:grid-cols-2 grid-rows-4 grid-cols-1">
           {mainPosts.map((m, index) => (
