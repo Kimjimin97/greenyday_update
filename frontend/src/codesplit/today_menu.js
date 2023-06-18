@@ -8,23 +8,22 @@ import { backUrl } from "../config/config";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-function Home({ data }) {
-  // console.log("home", data);
-  // const [images, setimgurl] = useState([]);
-  // const [mainPosts, setmenu] = useState([]);
+function Home() {
+  const [images, setimgurl] = useState([]);
+  const [mainPosts, setmenu] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get(backUrl + "/api/main/").then((res) => {
-  //     const events = res.data.events;
-  //     const image = [];
+  useEffect(() => {
+    axios.get(backUrl + "/api/main/").then((res) => {
+      const events = res.data.events;
+      const image = [];
 
-  //     events.map((url) => {
-  //       image.push(backUrl + url.image);
-  //     });
-  //     setimgurl(image);
-  //     setmenu(res.data.items);
-  //   });
-  // }, []);
+      events.map((url) => {
+        image.push(backUrl + url.image);
+      });
+      setimgurl(image);
+      setmenu(res.data.items);
+    });
+  }, []);
 
   return (
     <div class="bg-[#ECE4D7] overflow-x-hidden">
@@ -34,7 +33,7 @@ function Home({ data }) {
           Today's Menu
         </div>
         <div class="grid gap-14 lg:grid-cols-4 lg:grid-rows-1 md:grid-rows-2 md:grid-cols-2 grid-rows-4 grid-cols-1">
-          {data.map((m, index) => (
+          {mainPosts.map((m, index) => (
             <MenuTo menus={m} key={index} />
           ))}
         </div>
