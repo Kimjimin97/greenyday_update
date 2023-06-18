@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 function Home({ data }) {
   const dispatch = useDispatch();
   // const [images, setimgurl] = useState([]);
+
   const mainPosts = data.items;
   const events = data.events;
 
